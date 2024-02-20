@@ -3,6 +3,7 @@ import './App.css';
 import TypographyMUI from './Components/TypographyMUI';
 import ButtonMUI from './Components/ButtonMUI';
 import BoxMUI from './Components/BoxMUI'
+import StackMUI from './Components/StackMUI';
 function App() {
 
 
@@ -10,7 +11,8 @@ function App() {
     <div className="App">
       {/* <TypographyMUI /> */}
       {/* <ButtonMUI /> */}
-      <BoxMUI />
+      {/* <BoxMUI /> */}
+      <StackMUI />
     </div>
   );
 }
