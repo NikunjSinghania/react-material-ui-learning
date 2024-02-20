@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Typography from './Components/Typography';
+import TypographyMUI from './Components/TypographyMUI';
 
 function App() {
 
 
   return (
     <div className="App">
-      <Typography />
+      <TypographyMUI />
     </div>
   );
 }
