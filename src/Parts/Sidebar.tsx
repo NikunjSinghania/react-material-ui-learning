@@ -7,11 +7,28 @@ import { useSelector } from "react-redux";
 import { User, Terms , SidePanel, SidePanelCurrent } from '../DEFINITIONS'
 import { log } from "console";
 import { USERS_REDUCER } from "../Redux/REDUCERS";
-import { useEffect, useState } from "react";
-const Item = () => {
+import React, { useEffect, useState } from "react";
+
+const SidebarData : string[] = [
+    'Home',
+    'Channels',
+    'Add Video',
+]
+
+const Item : React.FC<{value:string}> = ({value}) => {
+
+    const Panel = useSelector((state : {Side_Panel : SidePanelCurrent , USERS_REDUCER : User})  => state.Side_Panel) as SidePanelCurrent
+    const [open, setOpen] = useState(true)
+
+    useEffect(() => {
+        console.log(Panel);
+        
+        setOpen(Panel as unknown as boolean)
+    }, [Panel])
+
     return (
         <Button sx={{
-            width : '250px',
+            // width : '250px',
             display : 'flex',
             flexDirection : 'row',
             alignItems : 'center',
@@ -23,27 +40,23 @@ const Item = () => {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 2 }}
+                // sx={{ mr: 2 }}
             >
                 <MenuIcon fontSize='medium'></MenuIcon>
             </IconButton>
-            <Typography>
-                Item 1
-            </Typography>
+            {
+                open && <Typography>
+                            {value}
+                        </Typography>
+            }
+            
         </Button>
     )
 }
 
 const Sidebar = () => {
 
-    const Panel = useSelector((state : {Side_Panel : SidePanelCurrent , USERS_REDUCER : User})  => state.Side_Panel) as SidePanelCurrent
-    const [open, setOpen] = useState(true)
-
-    useEffect(() => {
-        console.log(Panel);
-        
-        setOpen(Panel as unknown as boolean)
-    }, [Panel])
+    
     
     
 
@@ -54,28 +67,31 @@ const Sidebar = () => {
                 variant='permanent'
                 anchor="left"
                 sx= {{
+                    width :'100%',
                     '& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper' : {
-                      
-                        width : open == true ? '250px' : '50px',
-                        transitionProperty : 'width',
-                        transitionDuration : '0.5s',
+                        overflow : 'hidden',
+                        width : '100%',
                         position : 'relative'
                     }
                 }}
                 
             >
-                <Item />
-                <Divider variant="middle" component="span" ></Divider>
-                <Item />
-                <Divider variant="middle" component="span" ></Divider>
-                <Item />
-                <Divider variant="middle" component="span" ></Divider>
-                <Item />
-                <Divider variant="middle" component="span" ></Divider>
-                <Item />
-                <Divider variant="middle" component="span" ></Divider>
-                <Item />
-                <Divider variant="middle" component="span" ></Divider>
+              
+
+                {
+                    SidebarData.map((e : string) => {
+                        return (
+                            <>
+                                <Item value={e} />
+                                <Divider variant="middle" component="span" ></Divider>
+                            </>
+                        )
+                        
+                    })
+                }
+
+                
+                
                 
             </Drawer>
         </>

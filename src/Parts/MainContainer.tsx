@@ -3,17 +3,20 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { Link } from "react-router-dom";
 
 const MainContainer = () => {
     return (
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{
-            justifyContent : 'space-between'
+        <Grid container columns={{ xs: 4, sm: 8, md: 12 }} sx={{
+            justifyContent : 'space-between',
+            // width : '100% !important'
         }}>
             {Array.from(Array(20)).map((_, index) => (
-                <Grid xs={8} sm={3} md={2} key={index} sx ={{ 
-                    margin : '20px'
+                <Grid xs={3} sm={3} md={3} key={index} sx ={{ 
+                    margin : '10px 1px'
                 }} >
-                          <Card>
+                    <Link to='/'>
+                        <Card>
                                 <CardMedia
                                     sx = {{
                                         height : '10vw'
@@ -29,6 +32,8 @@ const MainContainer = () => {
                                     </Typography>
                                 </CardContent>
                           </Card>
+                    </Link>
+                          
                 </Grid>
             ))}
         </Grid>
